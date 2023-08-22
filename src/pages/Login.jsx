@@ -1,16 +1,28 @@
 import React, { useRef } from "react";
+import { useState } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const loginNameRef = useRef();
-  const loginPasswordRef = useRef();
+  const [email,setEmail] = useState();
+  const [password,setPassword] = useState();
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
-    e.preventDefault();
-  };
+      e.preventDefault();
+      axios.post('http://localhost:5000/login',{email,password})
+      .then(result=>{console.log(result)
+        if(result.data === "Success"){
+          navigate('/home')
+        }
+      })
+      .catch(error=>console.log(error))
+
+  }
 
   return (
     <Helmet title="Login">
@@ -25,7 +37,8 @@ const Login = () => {
                     type="email"
                     placeholder="Email"
                     required
-                    ref={loginNameRef}
+                    //ref={loginNameRef}
+                    onChange={(e)=>setEmail(e.target.value)}
                   />
                 </div>
                 <div className="form__group">
@@ -33,7 +46,8 @@ const Login = () => {
                     type="password"
                     placeholder="Password"
                     required
-                    ref={loginPasswordRef}
+                    //ref={loginPasswordRef}
+                    onChange={(e)=>setPassword(e.target.value)}
                   />
                 </div>
                 <button type="submit" className="addTOCart__btn">

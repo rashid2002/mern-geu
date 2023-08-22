@@ -26,6 +26,12 @@ const nav__links = [
     display: "Contact",
     path: "/contact",
   },
+  // make Ml 
+
+  {
+    display: "Ml",
+    path: "/",
+  }
 ];
 
 const Header = () => {

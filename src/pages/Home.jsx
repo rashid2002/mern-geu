@@ -232,7 +232,7 @@ const Home = () => {
                   onClick={() => setCategory("BREAD")}
                 >
                   <img src={foodCategoryImg03} alt="" />
-                  Vegetables/Fruits
+                  V&F
                 </button>
               </div>
             </Col>
